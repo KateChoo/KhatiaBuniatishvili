@@ -1,0 +1,265 @@
+
+/*=================
+           BASE
+=====================*/
+* {
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    /* overflow: hidden;  這個會凍結vh*/
+    background-color: #232323;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .slides h1,
+  #slide-0 h1,
+  #slide-0 h3 {
+    color:#961d1d;
+    text-align: center;
+    font-size: 900;
+  }
+  h2,
+  p,
+  .overlay h2,  /*有youtube icon的時候*/
+  li {
+   color: #f2dca6;     
+    // #FFF8DC;
+   font-size: 900;
+   font-family: monospace;
+   text-align: center;
+  }
+  
+  .slider {
+    margin: 1em auto 2em;
+    /*width:;為何不用設定height,沒有width就散開*/
+  }
+  .slides{
+    display: flex; /*從column變row*/
+    overflow-x: auto; /*在範圍內移動scroll, hidden,auto,visible*/
+    scroll-snap-type: x mandatory; /*proximity*/
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;  
+    /*
+    scroll-snap-points-x: repeat(300px);
+    scroll-snap-type: mandatory;
+    */
+  }
+  /*=====================
+  調整封面
+  =======================*/
+  #slide-7 .img-cover {
+    object-fit: cover;
+    height:105%;
+  }
+  #slide-9 .img-cover{
+    object-fit: cover;
+    height:100%;
+  }
+  #slide-6-1 .img-cover,
+  #slide-8-1 .img-cover,
+  #slide-9-1 .img-cover{
+    object-fit: cover;
+    // height:108%;
+    position: absolute;
+    top: 20px;
+    right:0;
+  }
+  /*=====================
+      scrollbar
+  =======================*/
+  .slides::-webkit-scrollbar { /*是我的紅色bar*/
+    width: 10px;
+    height: 10px;
+  } 
+  .slides::-webkit-scrollbar-thumb {
+    background: firebrick;
+    border-radius: 10px;
+  }
+  .slides::-webkit-scrollbar-track {
+    background: transparent; /*看不出有啥不同*/
+  }
+  /* scrollbar*/
+  /*=================
+             FADE
+  =====================*/
+  .slides > div {
+    scroll-snap-align:start; /*沒有這個滑的時候會卡在圖與圖之間*/
+    flex-shrink: 0;
+    width: 300px; /*slider一定要有不然圖會不見*/
+    height: 300px;
+    position: relative; /*沒有這個圖片變超大,但如果img也沒有position似乎沒差？？*/
+    overflow: hidden;/*scale the overlay the content will hide behind the cover*/
+  }
+  .slides > div:hover .img-cover{
+    /* 為何
+      .slides > div:hover,
+      .img-cover {
+       會使youtube顏色變淺？？
+      }
+    */
+    transform: scale(1.1);
+  }
+  #slide-8 .img-cover:hover,
+  #slide-9 .img-cover:hover {
+    opacity: 0.3;
+  }
+  /*
+  // .slides>.nav-slide:hover .img-cover{     這個為何不行啊？<div id="nav-slide slide-1">
+  //   transform: scale(1.1);
+  //   opacity: 0.3;
+  // }*/
+  .slides > div:hover .overlay {
+    opacity: 1;
+  }
+  .img-cover {
+    object-fit: cover;
+    position: absolute; /*原來是這個,但overlay是relative*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /*overlay: auto*/
+    /*overlay*/
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    /*overlay原本沒加*/
+    display: block; 
+  }
+  /*======================
+  flexbox icons
+  ========================*/
+  .wrap,
+  .footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #facebook,
+  #youtube,
+  #twitter,
+  #IG{
+    width:40px;
+    height:40px;
+    flex-basis: 1em 1.5em;
+    margin: 2em 1em;
+    transition: transform .3s;
+    fill: #961d1d;
+  }
+  
+  
+  
+  #facebook:hover,
+  #youtube:hover,
+  #twitter:hover,
+  #IG:hover {
+    transform: rotate(15deg) scale(1.1); 
+    fill: firebrick;
+  }  
+  /*=================
+    YouTube   目前沒有先關燈 slide 8,9,10有需要
+  =====================*/
+  /*
+  // #YouTube {
+  //   width:50%;
+  //   height:50%;
+  //   flex-basis: 1em 1.5em;
+  //   margin: 0 1em;
+  //   transition: transform .3s;
+  //   fill: #fff5ee;
+  // }
+  */
+  .overlay { /*這個比較不同再看看*/
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  /*=================
+             FADE end
+  =====================*/
+  /* @supports (scroll-snap-type) {
+    .slider > a {
+      display: none;
+    }
+  } */
+  /*
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #74ABE2, #5563DE);
+    font-family: 'Ropa Sans', sans-serif;
+  }
+  
+  /*=================
+              article DIV
+  =====================*/
+  .outer-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    font-family: monospace;
+    /*flex功能小螢幕可置中*/
+    height: 100%;
+    font-family: monospace;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center; /*沒有這個滑的時候會卡在圖與圖之間*/
+    scroll-snap-type: y proximity;
+  }
+  
+  /*=================
+             DIV end
+  =====================*/
+  /*=================
+      video and iframe
+  =====================*/
+  
+  .video1,
+  .video2,
+  .video3,
+  .video4,
+  .video5,
+  .video6,
+  .video7,
+  .video8,
+  .video9,
+  .video10,
+  .video11,
+  .video12,
+  .video13,
+  .video14,
+  .video15,
+  .video16,
+  .video17{
+    margin: 1em auto;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  
