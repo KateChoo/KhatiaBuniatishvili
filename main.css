@@ -70,23 +70,10 @@
   /*=====================
   調整封面
   =======================*/
-  #slide-7 .img-cover {
-    object-fit: cover;
-    height:105%;
+  .slides {
+    align-items: center; /*終於讓#slide-10-1#slide-11-1封面對齊了*/
   }
-  #slide-9 .img-cover{
-    object-fit: cover;
-    height:100%;
-  }
-  #slide-6-1 .img-cover,
-  #slide-8-1 .img-cover,
-  #slide-9-1 .img-cover{
-    object-fit: cover;
-    /*height:108%;*/
-    position: absolute;
-    top: 20px;
-    right:0;
-  }
+
   /*=====================
       scrollbar
   =======================*/
