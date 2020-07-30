@@ -9,6 +9,7 @@
     height: 100%;
     /* overflow: hidden;  這個會凍結vh*/
     background-color: #232323;
+    scroll-behavior: smooth;
   }
   
   a {
@@ -58,14 +59,24 @@
   }
   .slides{
     display: flex; /*從column變row*/
-    overflow-x: auto; /*在範圍內移動scroll, hidden,auto,visible*/
+    overflow-x: scroll; /*在範圍內移動scroll, hidden,auto,visible*/
     scroll-snap-type: x mandatory; /*proximity*/
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;  
+    -webkit-overflow-scrolling: touch; 
     /*
     scroll-snap-points-x: repeat(300px);
     scroll-snap-type: mandatory;
     */
+  }
+  /*如果用slide版本footer可刪掉*/
+  footer{
+    font-family: monospace;
+    text-align: center;
+    font-size: 1.5em;
+    color: firebrick;
+    padding: 0 0 1em 0;
+  }
+  footer a {
+    color: firebrick;
   }
   /*=====================
   調整封面
@@ -109,8 +120,8 @@
     */
     transform: scale(1.1);
   }
-  #slide-8 .img-cover:hover,
-  #slide-9 .img-cover:hover {
+  #slide-10 .img-cover:hover,
+  #slide-11 .img-cover:hover {
     opacity: 0.3;
   }
   /*
