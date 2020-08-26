@@ -78,6 +78,9 @@
   footer a {
     color: firebrick;
   }
+  footer a:hover{
+    color: #f2dca6; 
+  }
   /*=====================
   調整封面
   =======================*/
